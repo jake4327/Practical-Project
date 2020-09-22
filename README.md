@@ -18,10 +18,25 @@
 ### MoSCoW report 
 
 #### Must have ...
-#### Should have ...
-#### Could have ...
-#### Would have ...
+* Deploy app using docker and docker-compose
+* Deploy app using Jenkins
+* Test app on Jenkins
+* Manage database using MySQL 
+* Make test database using MySQL
+* Use Webhooks on Jenkins to redeploy code 
+* Use AWS to deploy code on the cloud
+* Provision enviroment using Ansible Playbook
+* Use NGINX to make a reverse proxy that hosts application 
 
+#### Should have ...
+* Software designs are made
+
+#### Could have ...
+*
+
+
+#### Would have ...
+*
 
 ### Docker
 |Description                                             |Assessment                                                                                                                                                                                                                                                                                                                                                                                     |Risk likelyhood of occuring (1=low to 10=high)|Impact (1- 10)|Responsiblity|Proposed Mitigration                                                                                                                                                                                                                                                                                                                                                                                 |Risk likelyhood of occuring (1 - 10)|Impact (1- 10)|
@@ -35,12 +50,13 @@
 
 |Description                                             |Assessment|Risk|Impact|Responsiblity|Current Mitigration|Proposed Mitigration|Respone|Tolorance|
 |--------------------------------------------------------|----------|----|------|-------------|-------------------|--------------------|-------|---------|
-|Executives must have oversight over the cloud           |          |    |      |             |                   |                    |       |         |
-|Management must own the risks in the cloud              |          |    |      |             |                   |                    |       |         |
-|All necessary staff must have knowledge of the cloud    |          |    |      |             |                   |                    |       |         |
-|Best practices must be followed in the cloud            |          |    |      |             |                   |                    |       |         |
-|data theft                                              |          |    |      |             |                   |                    |       |         |
-|system compromise                                       |          |    |      |             |                   |                    |       |         |
+|Executives must have oversight over the cloud           |Need to be able to make business decisions based off data from the cloud provider                                                                                                                                                                                                                                                                                                                                                                                                           |9                                             |2             |Jake Stone   |An oversight of the project is seen on github and progression of the project can be seen on Jira board. Over sight over the cloud can be seen on AWS can see how performance of computing resources is doing and can optimize based off data                                                                                                                                                         |9                                   |0             |
+|Management must own the risks in the cloud              |Knowing about the risks before developing is always a positive                                                                                                                                                                                                                                                                                                                                                                                                                              |7                                             |6             |Jake Stone   |Learning about cloud at QA academy and cloud academy                                                                                                                                                                                                                                                                                                                                                 |7                                   |1             |
+|All necessary staff must have knowledge of the cloud    |If working on something, a base level of compentence is always a help                                                                                                                                                                                                                                                                                                                                                                                                                       |4                                             |6             |Jake Stone   |I learn technologies of the cloud, which can be seen on Jira                                                                                                                                                                                                                                                                                                                                         |4                                   |1             |
+|Best practices must be followed in the cloud            |People that have came before have ran into problems while developing solutions to the cloud, they must have spent many a long night thinking arguing the comprimies between security and speed; authenticaion requirements and ease of use. After these long thoughts they have come up with a set of requirments that they think are the most appropriate, therefore  as these are the most competent people in this area these practices should be followed unless can be reasoned against|5                                             |6             |Jake Stone   |AWS best sercurity practices read. Report to be written to show following of the AWS sercurity measures                                                                                                                                                                                                                                                                                              |5                                   |1             |
+|data theft                                              |People can get to the data in a variety of ways e.g. SQL injection                                                                                                                                                                                                                                                                                                                                                                                                                          |10                                            |8             |AWS          |The data is stored on the sql database on a AWS VM                                                                                                                                                                                                                                                                                                                                                   |10                                  |1             |
+|system compromise                                       |The system can go down due to a range of technical problems                                                                                                                                                                                                                                                                                                                                                                                                                                 |9                                             |9             |Jake Stone   |Use jenkins so if a container is to fail Jenkins, an continuous integration pipeline can restart a container                                                                                                                                                                                                                                                                                         |9                                   |2             |
+
 
 ### Database
 
@@ -72,9 +88,9 @@
 
 ## References
 
-https://www.cimcor.com/blog/the-top-5-security-risks-in-docker-container-deployment
-https://www.isaca.org/resources/isaca-journal/past-issues/2012/cloud-risk-10-principles-and-a-framework-for-assessment
-https://www.shrm.org/resourcesandtools/hr-topics/risk-management/pages/top-database-security-threats.aspx
-https://securityfirstcorp.com/the-top-9-network-security-threats-of-2019/
-https://aws.amazon.com/blogs/security/getting-started-follow-security-best-practices-as-you-configure-your-aws-resources/
-https://searchaws.techtarget.com/tip/Perform-an-AWS-security-assessment-with-these-tips-and-tools
+1. https://www.cimcor.com/blog/the-top-5-security-risks-in-docker-container-deployment
+2. https://www.isaca.org/resources/isaca-journal/past-issues/2012/cloud-risk-10-principles-and-a-framework-for-assessment
+3. https://www.shrm.org/resourcesandtools/hr-topics/risk-management/pages/top-database-security-threats.aspx
+4. https://securityfirstcorp.com/the-top-9-network-security-threats-of-2019/
+5. https://aws.amazon.com/blogs/security/getting-started-follow-security-best-practices-as-you-configure-your-aws-resources/
+6. https://searchaws.techtarget.com/tip/Perform-an-AWS-security-assessment-with-these-tips-and-tools
