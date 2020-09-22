@@ -26,7 +26,7 @@
 
 ### Docker Compose 
 
-![](pictures/docker_compose.jpg)
+![](pictures/docker-compose.jpg)
 
 The appraoch to writing the docker compose file is the write out the single line commands 
 that need executing in the application and once the commands are scrutinized and accepted 
