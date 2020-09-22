@@ -26,6 +26,8 @@
 
 ### Docker Compose 
 
+![](pictures/docker_compose.jpg)
+
 The appraoch to writing the docker compose file is the write out the single line commands 
 that need executing in the application and once the commands are scrutinized and accepted 
 compose the docker-compose.yaml file.
@@ -44,6 +46,8 @@ compose the docker-compose.yaml file.
 
 ### Jenkins
 
+![](pictures/jenkins.jpg)
+
 Jenkins will use a pipeline to execute and run the containers from the commandline.
 The same format will be followed, the commands will be written and then analysed, after 
 a Jenkins build will be initiated.
@@ -56,6 +60,8 @@ a Jenkins build will be initiated.
 
 ### Dockerfiles
 
+![](pictures/docker.png)
+
 Dockerfiles are the files that will tell the container how to run, by building the base image and 
 running commands in the terminal, yet again the docker commands will be impliement check for sincerity
 and turned into a Dockerfile
@@ -67,6 +73,8 @@ and turned into a Dockerfile
 >Dockerfile
 
 ### Ansible
+
+![](pictures/ansible.jpeg)
 
 TBA
 
