@@ -9,10 +9,67 @@
 - [Risk_Assessment](#Risk_Assessment)
 
 ## Introduction 
+
 ## Infastructure
-## Testing 
+
+### Amazon Web Services (AWS)
+
+## Testing
+ 
 ## Database
+
+### MySQL 
+
+### Sercurity
+
 ## Planning
+
+### Docker Compose 
+
+The appraoch to writing the docker compose file is the write out the single line commands 
+that need executing in the application and once the commands are scrutinized and accepted 
+compose the docker-compose.yaml file.
+
+>docker-compose command
+>docker-compose command
+>docker-compose command
+>docker-compose command
+>docker-compose command
+
+>yaml
+>yaml 
+>yaml
+>yaml
+>yaml
+
+### Jenkins
+
+Jenkins will use a pipeline to execute and run the containers from the commandline.
+The same format will be followed, the commands will be written and then analysed, after 
+a Jenkins build will be initiated.
+
+>command
+>command
+>command 
+
+>Jenkins build
+
+### Dockerfiles
+
+Dockerfiles are the files that will tell the container how to run, by building the base image and 
+running commands in the terminal, yet again the docker commands will be impliement check for sincerity
+and turned into a Dockerfile
+
+>docker command
+>docker command
+>docker command
+
+>Dockerfile
+
+### Ansible
+
+TBA
+
 ## Risk_Assessment
 
 ### MoSCoW report 
@@ -30,13 +87,19 @@
 
 #### Should have ...
 * Software designs are made
+* Use a version control system to manage code - Github, Gitlab, BitBucket
+* Design for system 
+* Logging of deployment of application
 
 #### Could have ...
-*
-
+* Have .gitignore file 
+* Logs written for backend
+* Evolution of designs 
 
 #### Would have ...
-*
+* Tests cover full CRUD application
+* code quality is checked 
+* Update and analysis of project
 
 ### Docker
 |Description                                             |Assessment                                                                                                                                                                                                                                                                                                                                                                                     |Risk likelyhood of occuring (1=low to 10=high)|Impact (1- 10)|Responsiblity|Proposed Mitigration                                                                                                                                                                                                                                                                                                                                                                                 |Risk likelyhood of occuring (1 - 10)|Impact (1- 10)|
