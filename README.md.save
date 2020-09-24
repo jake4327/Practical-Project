@@ -7,10 +7,6 @@
 - [Testing](#Testing)
 - [Database](#Database)
 - [Risk_Assessment](#Risk_Assessment)
-  - [Docker](#Docker)
-  - ['Cloud Computing'](#'Cloud Computing')
-  - ['Database Risks'](#'Database Risks')
-  - [Networking](#Networking)
 
 ## Introduction 
 
@@ -56,9 +52,13 @@ Jenkins will use a pipeline to execute and run the containers from the commandli
 The same format will be followed, the commands will be written and then analysed, after 
 a Jenkins build will be initiated.
 
+
+
 >command
->command
+
 >command 
+
+
 
 >Jenkins build
 
@@ -70,9 +70,17 @@ Dockerfiles are the files that will tell the container how to run, by building t
 running commands in the terminal, yet again the docker commands will be impliement check for sincerity
 and turned into a Dockerfile
 
->docker command
->docker command
->docker command
+#### Database
+> FROM mysql:latest
+
+>docker volume create data_volume
+
+This will be done automatically 
+
+>docker run -v data_volume:/var/lib/mysql mysql
+
+>docker run /data/mysql:/var/lib/mysql mysql
+
 
 >Dockerfile
 
@@ -133,16 +141,18 @@ TBA
 |system compromise                                       |The system can go down due to a range of technical problems                                                                                                                                                                                                                                                                                                                                                                                                                                 |9                                             |9             |Jake Stone   |Use jenkins so if a container is to fail Jenkins, an continuous integration pipeline can restart a container                                                                                                                                                                                                                                                                                         |9                                   |2             |
 
 
-### Database Risks
+### Database
 
 |Description                                             |Assessment|Risk|Impact|Responsiblity|Current Mitigration|Proposed Mitigration|Respone|Tolorance|
 |--------------------------------------------------------|----------|----|------|-------------|-------------------|--------------------|-------|---------|
-|Excessive privileges      |When a malicious user enters the system they will try and get the highest level of access as possible so they may steal the most valuable data. Also, there may be a disgruntled employee that would want to cause havoc if they had unrestricted privileges they could delete all the data.|0  |10 |Jake Stone|Prevention, use NGINX so application is under on IP address, use AWS and follow sercurity guide lines.Damage control use Principle of least privilege so that if event is to occur damage can be minimized                                                                                                                    |0  |1  |
-|Legitimate privilege abuse|This is to distinguish between human imcompetence and deleting on purpose. There may be a worker whom, by mistake, deletes. shutsdown apart of the database.                                                                                                                           |7  |8  |Jake Stone|Make sure a back up of the data is kept so that if data is to be deleted back-up can be used                                                                                                                                                                                                                                  |7  |0  |
-|Database injection attacks|This is can be done in many way, but the result is either the deletion of data or data being stolen.                                                                                                                                                                                   |3  |7  |AWS       |S3 bucket will be used to store data, they follow AWS sercurity guide lines.                                                                                                                                                                                                                                                  |1  |7  |
-|Malware                   |A piece of software that acts to destroy or steal data from application.                                                                                                                                                                                                               |5  |8  |AWS       |Malware can only attack the EC2 machines the application will be running on. Reducing the likelyhood that Malware will be present on a machine is the responsiblity of AWS and they follow strict sercurity guidelines.                                                                                                       |1  |8  |
-|Storage media exposure    |Back-ups of the data are normally left insurecure.                                                                                                                                                                                                                                     |5  |8  |AWS       |AWS will store all backups of data and therefore will be responsible for it. There could be an argument made that AWS could go down and having a backup of this data is could be vital in sercuring a higher market share, this is false if AWS was to go down people would no longer trust there information on the internet.|1  |8  |
-|The human factor          |People thinking they know what they're doing and not doing the correct thing, so they enter the incorrect command and do something catastrphoic                                                                                                                                        |8  |10 |Jake Stone|Branching the project and having a test data base will allow for commands to be tested and put into development.                                                                                                                                                                                                              |8  |1  |
+|Database Manipulation                                   |          |    |      |             |                   |                    |       |         |
+|Database corruption                                     |          |    |      |             |                   |                    |       |         |
+|Excessive privileges                                    |          |    |      |             |                   |                    |       |         |
+|Legitimate privilege abuse                              |          |    |      |             |                   |                    |       |         |
+|Database injection attacks                              |          |    |      |             |                   |                    |       |         |
+|Malware                                                 |          |    |      |             |                   |                    |       |         |
+|Storage media exposure                                  |          |    |      |             |                   |                    |       |         |
+|The human factor                                        |          |    |      |             |                   |                    |       |         |
 
 ### Network
 
