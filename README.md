@@ -7,10 +7,11 @@
 - [Testing](#Testing)
 - [Database](#Database)
 - [Risk Assessment](#Risk%20Assessment)
+  - [MoSCoW](#MoSCoW)
   - [Docker](#Docker)
   - [Cloud Computing](#Cloud%20Computing)
   - [Database Risks](#Database%20Risks)
-  - [Networking](#Networking)
+  - [Network](#Network)
 - [References](#References)
  
 ## Introduction 
@@ -83,9 +84,9 @@ and turned into a Dockerfile
 
 TBA
 
-## Risk_Assessment
+## Risk%20Assessment
 
-### MoSCoW report 
+### MoSCoW%20report 
 
 #### Must have ...
 * Deploy app using docker and docker-compose
@@ -122,7 +123,8 @@ TBA
 |Kernel level threats                                    |Docker is designed to have all containers share the same kernel and the host. This provides convenience but also amplifies the impact of any vulnerabilities present in the kernel.                                                                                                                                                                                                            |3                                             |10            |Jake Stone   |restrict applications that run on privileged ports besides the ones that are necessary (e.g. Apache server), since those ports have more access to the kernel.                                                                                                                                                                                                                                       |1                                   |10            |
 |Inconsistent update and patching of docker containers   |Running an older version of Docker containers can expose internal IT environments to higher risks of breach                                                                                                                                                                                                                                                                                    |2                                             |5             |Jake Stone   |a patching policy should be in place and enforced.                                                                                                                                                                                                                                                                                                                                                   |0                                   |5             |
 |Unverified docker images                                |Downloading images that are from an unknown source can lead to malware running on the kernel.                                                                                                                                                                                                                                                                                                  |1                                             |2             |Jake Stone   |download Docker images from trusted sources that are curated by the Docker community. Run vulnerability scans against those images before running them in the host environment.                                                                                                                                                                                                                      |1                                   |2             |
-### Cloud Computing
+
+### Cloud%20Computing
 
 |Description                                             |Assessment|Risk|Impact|Responsiblity|Current Mitigration|Proposed Mitigration|Respone|Tolorance|
 |--------------------------------------------------------|----------|----|------|-------------|-------------------|--------------------|-------|---------|
@@ -134,7 +136,7 @@ TBA
 |system compromise                                       |The system can go down due to a range of technical problems                                                                                                                                                                                                                                                                                                                                                                                                                                 |9                                             |9             |Jake Stone   |Use jenkins so if a container is to fail Jenkins, an continuous integration pipeline can restart a container                                                                                                                                                                                                                                                                                         |9                                   |2             |
 
 
-### Database Risks
+### Database%20Risks
 
 |Description                                             |Assessment|Risk|Impact|Responsiblity|Current Mitigration|Proposed Mitigration|Respone|Tolorance|
 |--------------------------------------------------------|----------|----|------|-------------|-------------------|--------------------|-------|---------|
