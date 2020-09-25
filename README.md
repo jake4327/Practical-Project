@@ -16,6 +16,10 @@
  
 ## Introduction 
 
+SFIA Project 2
+
+This project requires the deployment of an app using technologies of the web server.
+
 ## Infastructure
 
 ### Amazon Web Services (AWS)
@@ -39,15 +43,23 @@ that need executing in the application and once the commands are scrutinized and
 compose the docker-compose.yaml file.
 
 >docker-compose command
+
 >docker-compose command
+
 >docker-compose command
+
 >docker-compose command
+
 >docker-compose command
 
 >yaml
+
 >yaml 
+
 >yaml
+
 >yaml
+
 >yaml
 
 ### Jenkins
@@ -59,7 +71,9 @@ The same format will be followed, the commands will be written and then analysed
 a Jenkins build will be initiated.
 
 >command
+
 >command
+
 >command 
 
 >Jenkins build
@@ -72,21 +86,37 @@ Dockerfiles are the files that will tell the container how to run, by building t
 running commands in the terminal, yet again the docker commands will be impliement check for sincerity
 and turned into a Dockerfile
 
->docker command
->docker command
->docker command
+> docker pull python
 
->Dockerfile
+> docker pull jenkins
+
+> docker pull mysql
+
+> docker run -d -p 80:8080 python
+
+> docker run -d -p 5000:5000 jenkins 
+
+> docker run -d -p 3306:3306 mysql
+
+> docker exce PYTHON_IMAGE __init__.py
+
+> Dockerfile
 
 ### Ansible
 
-![](pictures/ansible.jpeg)
+![](pictures/ansible_1.jpeg)
 
-TBA
+>
 
-## Risk%20Assessment
+>
 
-### MoSCoW%20report 
+>
+
+>
+
+## Risk Assessment
+
+### MoSCoW report 
 
 #### Must have ...
 * Deploy app using docker and docker-compose
@@ -124,7 +154,7 @@ TBA
 |Inconsistent update and patching of docker containers   |Running an older version of Docker containers can expose internal IT environments to higher risks of breach                                                                                                                                                                                                                                                                                    |2                                             |5             |Jake Stone   |a patching policy should be in place and enforced.                                                                                                                                                                                                                                                                                                                                                   |0                                   |5             |
 |Unverified docker images                                |Downloading images that are from an unknown source can lead to malware running on the kernel.                                                                                                                                                                                                                                                                                                  |1                                             |2             |Jake Stone   |download Docker images from trusted sources that are curated by the Docker community. Run vulnerability scans against those images before running them in the host environment.                                                                                                                                                                                                                      |1                                   |2             |
 
-### Cloud%20Computing
+### Cloud Computing
 
 |Description                                             |Assessment|Risk|Impact|Responsiblity|Current Mitigration|Proposed Mitigration|Respone|Tolorance|
 |--------------------------------------------------------|----------|----|------|-------------|-------------------|--------------------|-------|---------|
@@ -136,7 +166,7 @@ TBA
 |system compromise                                       |The system can go down due to a range of technical problems                                                                                                                                                                                                                                                                                                                                                                                                                                 |9                                             |9             |Jake Stone   |Use jenkins so if a container is to fail Jenkins, an continuous integration pipeline can restart a container                                                                                                                                                                                                                                                                                         |9                                   |2             |
 
 
-### Database%20Risks
+### Database Risks
 
 |Description                                             |Assessment|Risk|Impact|Responsiblity|Current Mitigration|Proposed Mitigration|Respone|Tolorance|
 |--------------------------------------------------------|----------|----|------|-------------|-------------------|--------------------|-------|---------|
@@ -151,16 +181,13 @@ TBA
 
 |Description                                             |Assessment|Risk|Impact|Responsiblity|Current Mitigration|Proposed Mitigration|Respone|Tolorance|
 |--------------------------------------------------------|----------|----|------|-------------|-------------------|--------------------|-------|---------|
-|Network penetration                                     |          |    |      |             |                   |                    |       |         |
-|Viruses and Worms                                       |          |    |      |             |                   |                    |       |         |
-|Drive-by Download Attacks                               |          |    |      |             |                   |                    |       |         |
-|Botnets                                                 |          |    |      |             |                   |                    |       |         |
-|Phishing Attacks                                        |          |    |      |             |                   |                    |       |         |
-|Exploit Kits                                            |          |    |      |             |                   |                    |       |         |
-|DDoS (Distributed Denial of Service)                    |          |    |      |             |                   |                    |       |         |
-|Ransomware                                              |          |    |      |             |                   |                    |       |         |
-|Cryptojacking                                           |          |    |      |             |                   |                    |       |         |
-|APT Threats                                             |          |    |      |             |                   |                    |       |         |
+|Viruses and Worms                   |destructive malicious programs designed to infect core systems, destroying essential system data and making networks inoperable                                                                                               |5                                             |9             |Jake Stone   |Installing anti-malware solutions on all networked devices and systems can significantly reduce the possibility of contracting these viruses or allowing them to spread.                                                                                        |1                                   |9             |
+|Botnets                             |powerful networks of compromised machines that can be remotely controlled and used to launch attacks of massive scale                                                                                                         |5                                             |9             |Jake Stone   |efense in this case requires a cooperative approach including working with your ISP, system software vendors, and law enforcement agencies.                                                                                                                     |1                                   |9             |
+|Phishing Attacks                    |social engineering attack that is designed to steal user logins, credit card credentials, and other types of personal financial information.                                                                                  |5                                             |8             |Jake Stone   |train your users to always be cautious when reading and opening all emails                                                                                                                                                                                      |1                                   |8             |
+|Exploit Kits                        |automated ways to exploit users systems                                                                                                                                                                                       |5                                             |9             |Jake Stone   |  Software solutions include antivirus and intrusion preventions systems, and human solutions include anti-phishing training for users.                                                                                                                         |1                                   |9             |
+|DDoS (Distributed Denial of Service)|The purpose of these attacks is to overwhelm the hosted servers of their targets with requests for data, making them completely inoperable                                                                                    |5                                             |9             |Jake Stone   |Early detection is vital to protect your network effectively against a DDoS attack. WAFs (Web Application Firewalls) are a great tool to use against these attacks as they give you more control over your web traffic while recognizing malicious web exploits.|1                                   |9             |
+|Ransomware                          |By infecting secure database systems, encrypting data, and threatening deletion or corruption of files                                                                                                                        |5                                             |10            |Jake Stone   |As ransomware is a form of malware, the same defensive strategies are required – antivirus software, keeping software updated with the latest security patches, and training employees to recognize phishing attacks.                                           |1                                   |10            |
+|Cryptojacking                       |utilizing hardware resources from unsuspecting victims for their financial gain. hackers can use their target’s CPU processing resources to mine for cryptocurrency, significantly impacting the performance of their systems.|5                                             |5             |Jake Stone   |T teams should have methods to continuously monitor and diagnose CPU usage and alert to changes over time                                                                                                                                                       |1                                   |5             |
 
 ## References
 
