@@ -26,11 +26,15 @@ services:
  database: 
    build: ./database
    environment:
-    - MYSQL_ROOT_PASSWORD="password"
+    - MYSQL_ROOT_PASSWORD=password
    networks:
     - back-end-net
    ports:
     - "3306:3306"
+   volumes:
+    - type: volume
+      source: jenkins
+      target: /var/jenkins_home
 
  nginx:
   build: ./nginx
@@ -42,6 +46,9 @@ services:
    - type: bind
      source: ./nginx/nginx.conf
      target: /etc/nginx/nginx.conf  
+
+volumes:
+ jenkins:
 
 networks:
  front-end-net:
