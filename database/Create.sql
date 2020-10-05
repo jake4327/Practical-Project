@@ -9,3 +9,4 @@ CREATE TABLE `users` (
 );
 
 INSERT INTO `users` VALUES ('Bob'),('Jay'),('Matt'),('Ferg'),('Mo');
+
