@@ -5,4 +5,5 @@ pipeline{
            stage('Run docker-compose'){
 		sh "docker-compose up"
 	   }
+	}
 }
