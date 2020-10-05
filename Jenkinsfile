@@ -1,15 +1,16 @@
+
 pipeline{
         agent any
         stages{
-           stage('Install Docker'){
+	   stage('Install Docker'){
                 steps{
                     sh "curl https://get.docker.com | sudo bash"
                 } 
 	   }
-	   stage('install Docker-compose'){
+           stage('Run docker-compose'){
 		steps{
-                  sh "./install_docker_compose.sh"
-                }
-           } 
+			sh "sudo docker-compose up -d"
+		}
+	   }
 	}
 }
