@@ -1,5 +1,6 @@
-FROM python:3.5
-RUN apt-get update && apt-get install python3 -y
-COPY . /frontend
+FROM python:3.7
+WORKDIR /app
+COPY . .
+RUN pip install -r requirements.txt
 EXPOSE 5000
-ENTRYPOINT ["/usr/local/bin/python3", "app.py"]
+ENTRYPOINT ["python", "app.py"]
