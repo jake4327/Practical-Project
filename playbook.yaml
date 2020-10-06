@@ -1,0 +1,19 @@
+- hosts: all
+  # run as the root user on the remote machine
+  become: true
+
+tasks:
+  - name: 'install jenkins'
+    package:
+      name: jenkins
+      state: latest
+
+tasks:
+  - name: 'install docker'
+    package:
+      name: docker.io  
+      state: latest 
+   
+ 
+
+

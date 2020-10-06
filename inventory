@@ -1,0 +1,9 @@
+[jenkins_master]
+ec2-34-209-26-105.us-west-2.compute.amazonaws.com
+
+[jenkins_master:vars]
+ansible_user=ubuntu
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+ansible_ssh_private_key_file=~/.ssh/ansible_to_jenkins
+
+#[databases]
