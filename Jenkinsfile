@@ -25,7 +25,7 @@ pipeline{
                   then
                     continue
                   else
-                    git clone -b MVP https://github.com/jake4327/Practical_Project  
+                    git clone -b development https://github.com/jake4327/Practical_Project  
                   fi 
                   cd \$LOCATION_OF_REPO
                   git pull
