@@ -28,7 +28,7 @@ pipeline{
                     git clone -b development https://github.com/jake4327/Practical_Project  
                   fi 
                   cd \$LOCATION_OF_REPO
-                  git pull -b development
+                  git pull git pull https://github.com/jake4327/Practical_Project.git development
                   '''
 		}
 	   }
