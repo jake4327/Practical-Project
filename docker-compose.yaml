@@ -16,7 +16,7 @@ services:
   depends_on:
    - database
   environment:
-   - DATABASE_URL=${DATABASE_URL}
+   - DATABASE_URI=${DATABASE_URI}
    - SECRET_KEY=${SECRET_KEY}
 
  database:
@@ -27,17 +27,19 @@ services:
    - 3306
   volumes:
    - type: volume
-  source: jenkins
-  target: /var/jenkins_home
+     source: jenkins
+     target: /var/jenkins_home
 
  nginx:
-  build: ./nginx
+  image: nginx
   ports:
    - "80:80"
   volumes:
    - type: bind
      source: ./nginx/nginx.conf
      target: /etc/nginx/nginx.conf  
+  depends_on:
+   - frontend
 
 volumes:
  jenkins:
