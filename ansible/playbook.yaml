@@ -1,0 +1,13 @@
+---
+- hosts: jenkins_master
+  become: true
+  tasks:
+    - name: install jenkins 
+      script: install_jenkins.sh
+
+    - name: install docker
+      script: install_docker.sh
+   
+
+
+

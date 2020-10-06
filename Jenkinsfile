@@ -17,34 +17,29 @@ pipeline{
                    sh "sudo usermod -aG docker \$(whoami)"
                 }
            }
-	   stage('Install Docker-compose'){
-                steps{
-		   sh """
-			sudo apt install -y curl jq
-                        version=\$(curl -s https://api.github.com/repos/docker/compose/releases/latest | jq -r '.tag_name')
-                        sudo curl -L "https://github.com/docker/compose/releases/download/${version}/docker-compose-\$(uname -s)-\$(uname -m)" -o /usr/local/bin/docker-compose
-                        sudo chmod +x /usr/local/bin/docker-compose
-		   """
-                }
-           }
 	   stage('Clone project MVP branch'){
 		steps{
 		 sh '''
-                  LOCATION_OF_REPO=/home/jenkins/.jenkins/workspace/
+                  LOCATION_OF_REPO=~/.jenkins/workspace/sfia-2-jenkins
                   if [ -d "$LOCATION_OF_REPO" ]
                   then
                     continue
                   else
-                    git clone -b MVP https://github.com/jake4327/Practical_Project  
+                    git clone -b development https://github.com/jake4327/Practical_Project  
                   fi 
                   cd \$LOCATION_OF_REPO
-                  git pull
+                  git pull https://github.com/jake4327/Practical_Project.git development
                   '''
 		}
 	   }
            stage('Run docker-compose'){
 		steps{
-			sh "sudo docker-compose up -d"
+		sh '''
+		  export SECRET_KEY=password
+                  export DATABASE_URI=mysql+pymysql://root:password@database:3306/users
+                  export MYSQL_ROOT_PASSWORD=password
+                  sudo -E MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} DATABASE_URI=${DATABASE_URI} SECRET_KEY=${SECRET_KEY} docker-compose pull && sudo -E MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} DATABASE_URI=${DATABASE_URI} SECRET_KEY=${SECRET_KEY} docker-compose up -d --build
+		'''
 		}
 	   }
 	}
