@@ -14,7 +14,7 @@ pipeline{
 	   }
 	   stage('Add user to docker group'){
                 steps{
-                   sh "sudo usermod -aG docker /$(whoami)"
+                   sh "sudo usermod -aG docker \$(whoami)"
                 }
            }
 	   stage('Install Docker-compose'){
