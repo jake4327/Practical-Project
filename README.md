@@ -24,9 +24,21 @@ This project requires the deployment of an app using technologies of the web ser
 
 ### Amazon Web Services (AWS)
 
+#### EC2 instances
+##### Sercurity groups
+##### Load balancer
+
+#### VCP 
+##### Route tables
+##### NACL
+##### NAT Gateway 
+##### Subnets
+
 ## Testing
  
 ## Database
+
+### RDS
 
 ### MySQL 
  
