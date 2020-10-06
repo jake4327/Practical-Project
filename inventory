@@ -6,4 +6,29 @@ ansible_user=ubuntu
 ansible_ssh_common_args='-o StrictHostKeyChecking=no'
 ansible_ssh_private_key_file=~/.ssh/ansible_to_jenkins
 
+#change when AWS instance is running
+#create keys -ALL WILL NEED TO BE PEM - this was a mistake made
 #[databases]
+#ec2-34-209-26-105.us-west-2.compute.amazonaws.com
+
+#[database:vars]
+#ansible_user=ubuntu
+#ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+#ansible_ssh_private_key_file=~/.ssh/ansible_to_database
+
+#[production]
+#ec2-34-209-26-105.us-west-2.compute.amazonaws.com
+
+#[production:vars]
+#ansible_user=ubuntu
+#ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+#ansible_ssh_private_key_file=~/.ssh/ansible_to_production
+
+#[test]
+#[production]
+#ec2-34-209-26-105.us-west-2.compute.amazonaws.com
+
+#[test:vars]
+#ansible_user=ubuntu
+#ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+#ansible_ssh_private_key_file=~/.ssh/ansible_to_test 

@@ -1,19 +1,18 @@
-- hosts: all
+- hosts: jenkins_master
   # run as the root user on the remote machine
   become: true
 
 tasks:
   - name: 'install jenkins'
-    package:
-      name: jenkins
-      state: latest
+    script: install_jenkins.sh
 
 tasks:
   - name: 'install docker'
-    package:
-      name: docker.io  
-      state: latest 
+    script install_docker.sh
    
- 
+tasks:
+  - name: 'install docker compose'
+    script: install_docker_compose.sh
+
 
 
