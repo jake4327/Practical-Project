@@ -20,7 +20,7 @@ pipeline{
 	   stage('Clone project MVP branch'){
 		steps{
 		 sh '''
-                  LOCATION_OF_REPO=/home/jenkins/.jenkins/workspace/
+                  LOCATION_OF_REPO=~/.jenkins/workspace/sfia-2-jenkins
                   if [ -d "$LOCATION_OF_REPO" ]
                   then
                     continue
