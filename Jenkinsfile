@@ -34,12 +34,12 @@ pipeline{
 	   }
            stage('Run docker-compose'){
 		steps{
-		sh '''
-		  export SECRET_KEY=password
-                  export DATABASE_URI=mysql+pymysql://root:password@database:3306/users
-                  export MYSQL_ROOT_PASSWORD=password
-                  sudo -E MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} DATABASE_URI=${DATABASE_URI} SECRET_KEY=${SECRET_KEY} docker-compose pull && sudo -E MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} DATABASE_URI=${DATABASE_URI} SECRET_KEY=${SECRET_KEY} docker-compose up -d --build
-		'''
+		             withCredentials([string(credentialsId: 'DATABASE_URI', 'DATABASE_URI'),string(credentialsId: 'TEST_DATABASE_URI', variable: 'TEST_DATABASE_URI'), string(credentialsId: 'MYSQL_ROOT_PASSWORD', variable: 'TEST_DATABASE_URI'),
+                                       string(credentialsId: 'SECRET_KEY', variable: 'SECRET_KEY')]){
+		                 sh '''
+                                      sudo -E TEST_DATABASE_URI=${TEST_DATABASE_URI} MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} DATABASE_URI=${DATABASE_URI} SECRET_KEY=${SECRET_KEY} docker-compose up -d
+			         '''
+		             }
 		}
 	   }
 	}
