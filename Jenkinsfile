@@ -40,9 +40,11 @@ pipeline{
                                               string(credentialsId: 'DATABASE_URI', variable: 'DATABASE_URI'),
 					      string(credentialsId: 'TEST_DATABASE_URI', variable: 'TEST_DATABASE_URI'),
                                               string(credentialsId: 'MYSQL_ROOT_PASSWORD', variable: 'MYSQL_ROOT_PASSWORD'),
-                                              string(credentialsId: 'SECRET_KEY', variable: 'SECRET_KEY')]){
+                                              string(credentialsId: 'SECRET_KEY', variable: 'SECRET_KEY'),
+					      string(credentialsId: 'EC2_USER', variable: 'EC2_USER'),
+					      string(credentialsId: 'EC2_IPv4_DNS', variable: 'EC2_IPv4_DNS')]){
 		                 sh '''
-				      ssh -tt -o "StrictHostKeyChecking=no" -i $PEM_KEY ubuntu@#EC2 instance << EOF 
+				      ssh -tt -o "StrictHostKeyChecking=no" -i $PEM_KEY $EC2_USER@$EC2_IPv4_DNS << EOF 
  				      git clone -b development https://github.com/jake4327/Practical_Project.git
 				      cd Practical_Project
 			  	      export MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} SECRET_KEY=${SECRET_KEY} DATABASE_URI=${DATABASE_URI} TEST_DATABASE_URI=${TEST_DATABASE_URI}
