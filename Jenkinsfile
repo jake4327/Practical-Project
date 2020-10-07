@@ -7,6 +7,7 @@ pipeline{
 			sh "sudo apt update"
                 }
            }
+/*
 #	   stage('Install Docker'){
 #               steps{
 #                    sh "curl https://get.docker.com | sudo bash"
@@ -32,6 +33,7 @@ pipeline{
 #                  '''
 #		}
 #	   }
+*/
            stage('Run docker-compose'){
 		steps{
 		             withCredentials([string(credentialsId: 'DATABASE_URI', 'DATABASE_URI'),string(credentialsId: 'TEST_DATABASE_URI', variable: 'TEST_DATABASE_URI'), string(credentialsId: 'MYSQL_ROOT_PASSWORD', variable: 'TEST_DATABASE_URI'),
