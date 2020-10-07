@@ -9,7 +9,7 @@ pipeline{
            }
            stage('Run app on test server'){
 		steps{
-		             withCredentials([file(credentialsId: 'PEM_KEY', variable: 'PEM_KEY')
+		             withCredentials([file(credentialsId: 'PEM_KEY', variable: 'PEM_KEY'),
                                               string(credentialsId: 'DATABASE_URI', variable: 'DATABASE_URI'),
 					      string(credentialsId: 'TEST_DATABASE_URI', variable: 'TEST_DATABASE_URI'),
                                               string(credentialsId: 'MYSQL_ROOT_PASSWORD', variable: 'MYSQL_ROOT_PASSWORD'),
@@ -29,7 +29,7 @@ pipeline{
 	  }
 	stage('Run app on production server'){
                 steps{
-                             withCredentials([file(credentialsId: 'PEM_KEY', variable: 'PEM_KEY')
+                             withCredentials([file(credentialsId: 'PEM_KEY', variable: 'PEM_KEY'),
                                               string(credentialsId: 'DATABASE_URI', variable: 'DATABASE_URI'),
                                               string(credentialsId: 'DATABASE_URI', variable: 'DATABASE_URI'),
                                               string(credentialsId: 'MYSQL_ROOT_PASSWORD', variable: 'MYSQL_ROOT_PASSWORD'),
