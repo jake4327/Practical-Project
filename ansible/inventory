@@ -16,19 +16,18 @@ ansible_ssh_private_key_file=~/.ssh/amazon_project_work.pem
 #ansible_ssh_common_args='-o StrictHostKeyChecking=no'
 #ansible_ssh_private_key_file=~/.ssh/ansible_to_database
 
-#[production]
-#ec2-34-209-26-105.us-west-2.compute.amazonaws.com
+[production]
+ec2-35-161-247-215.us-west-2.compute.amazonaws.com
 
-#[production:vars]
-#ansible_user=ubuntu
-#ansible_ssh_common_args='-o StrictHostKeyChecking=no'
-#ansible_ssh_private_key_file=~/.ssh/ansible_to_production
+[production:vars]
+ansible_user=ubuntu
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+ansible_ssh_private_key_file=~/.ssh/amazon_project_work.pem
 
-#[test]
-#[production]
-#ec2-34-209-26-105.us-west-2.compute.amazonaws.com
+[test]
+ec2-52-34-118-73.us-west-2.compute.amazonaws.com
 
-#[test:vars]
-#ansible_user=ubuntu
-#ansible_ssh_common_args='-o StrictHostKeyChecking=no'
-#ansible_ssh_private_key_file=~/.ssh/ansible_to_test 
+[test:vars]
+ansible_user=ubuntu
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+ansible_ssh_private_key_file=~/.ssh/amazon_project_work.pem
