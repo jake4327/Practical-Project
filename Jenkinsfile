@@ -36,7 +36,7 @@ pipeline{
 */
            stage('Run docker-compose'){
 		steps{
-		             withCredentials([string(credentialsId: 'DATABASE_URI', variable: 'DATABASE_URI'),string(credentialsId: 'TEST_DATABASE_URI', variable: 'TEST_DATABASE_URI'), string(credentialsId: 'MYSQL_ROOT_PASSWORD', variable: 'TEST_DATABASE_URI'),
+		             withCredentials([string(credentialsId: 'DATABASE_URI', variable: 'DATABASE_URI'),string(credentialsId: 'TEST_DATABASE_URI', variable: 'TEST_DATABASE_URI'), string(credentialsId: 'MYSQL_ROOT_PASSWORD', variable: 'MYSQL_ROOT_PASSWORD'),
                                        string(credentialsId: 'SECRET_KEY', variable: 'SECRET_KEY')]){
 		                 sh '''
                                       sudo -E TEST_DATABASE_URI=${TEST_DATABASE_URI} MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} DATABASE_URI=${DATABASE_URI} SECRET_KEY=${SECRET_KEY} docker-compose up -d
