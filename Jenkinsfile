@@ -1,13 +1,14 @@
 
 pipeline{
         agent any
+/*
         stages{	
 	   stage('Update system'){
                 steps{
 			sh "sudo apt update"
                 }
            }
-/*
+
 #	   stage('Install Docker'){
 #               steps{
 #                    sh "curl https://get.docker.com | sudo bash"
