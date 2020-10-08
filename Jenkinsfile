@@ -32,6 +32,8 @@ pipeline{
 		             }
 		}
 	  }
+
+/*
 	stage('Run app on production server'){
                 steps{
                              withCredentials([file(credentialsId: 'PEM_KEY', variable: 'PEM_KEY'),
@@ -51,6 +53,7 @@ pipeline{
                                  '''
                              }
                 }
-          }
+         }
+*/
       }
 }
