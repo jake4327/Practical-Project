@@ -23,7 +23,7 @@ pipeline{
 			              export MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} DATABASE_URI=${DATABASE_URI} MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} SECRET_KEY=${SECRET_KEY} TEST_DATABASE_URI=${TEST_DATABASE_URI}
                                       sudo -E TEST_DATABASE_URI=${TEST_DATABASE_URI} DATABASE_URI=${DATABASE_URI} MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} SECRET_KEY=${SECRET_KEY} docker-compose up -d
 				      
-				      docker exec -it practical_project_backend pytest --cov application >> TEST_RESULTS.txt
+				      docker exec -it practical_project_backend_1 pytest --cov application >> TEST_RESULTS.txt
 				      exit
 				      EOF
 			         '''
