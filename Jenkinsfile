@@ -26,8 +26,9 @@ pipeline{
 				      touch TEST_RESULTS.txt
                                       echo "hello-world" >> TEST_RESULTS.txt
 				      docker exec -it practical_project_backend_1 pytest --cov application > TEST_RESULTS.txt
+				      exit
 				      echo "hello world"
-				      >> EOF
+				      EOF
 			         '''
 		             }
 		}
