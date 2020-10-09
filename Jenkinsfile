@@ -17,25 +17,25 @@ pipeline{
 					      string(credentialsId: 'EC2_USER', variable: 'EC2_USER'),
 					      string(credentialsId: 'EC2_IPv4_DNS_TEST', variable: 'EC2_IPv4_DNS_TEST')]){
 		                 sh '''
-				      ssh -tt -o "StrictHostKeyChecking=no" -i ${PEM_KEY} ubuntu@ec2-54-188-109-194.us-west-2.compute.amazonaws.com << EOF 
-                                      git clone -b development https://github.com/jake4327/Practical_Project.git
-				      cd Practical_Project
-			              export MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} DATABASE_URI=mysql+pymysql://admin:password@database-1.cgmsgfpt9oix.us-west-2.rds.amazonaws.com:3306/users MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} SECRET_KEY=${SECRET_KEY} TEST_DATABASE_URI=mysql+pymysql://admin:password@database-1.cgmsgfpt9oix.us-west-2.rds.amazonaws.com:3306/testdb
+				                      ssh -tt -o "StrictHostKeyChecking=no" -i ${PEM_KEY} ubuntu@ec2-50-112-55-155.us-west-2.compute.amazonaws.com << EOF
+			                          export MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} DATABASE_URI=${DATABASE_URI} MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} SECRET_KEY=${SECRET_KEY} TEST_DATABASE_URI=mysql+pymysql://admin:password@database-1.cgmsgfpt9oix.us-west-2.rds.amazonaws.com:3306/testdb
+			                          git clone https://github.com/jake4327/Practical_Project.git
+			                          cd Practical_Project
                                       sudo -E TEST_DATABASE_URI=${TEST_DATABASE_URI} DATABASE_URI=${DATABASE_URI} MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} SECRET_KEY=${SECRET_KEY} docker-compose up -d
 				      
-				      touch TEST_RESULTS.txt
+                                      touch TEST_RESULTS.txt
                                       echo "hello-world" >> TEST_RESULTS.txt
-				      docker exec -it practical_project_backend_1 pytest --cov application > TEST_RESULTS.txt
-				      exit
-				      echo "hello world"
-				      EOF
-			         '''
+                                      docker exec practical_project_backend_1 pytest --cov application > TEST_RESULTS.txt
+                                      exit
+                                      echo "hello world"
+                                      EOF
+			                '''
 		             }
 		}
 	  }
 
-/*
-	stage('Run app on production server'){
+
+	stage('Run app on kubernetes'){
                 steps{
                              withCredentials([file(credentialsId: 'PEM_KEY', variable: 'PEM_KEY'),
                                               string(credentialsId: 'DATABASE_URI', variable: 'DATABASE_URI'),
@@ -44,17 +44,18 @@ pipeline{
                                               string(credentialsId: 'SECRET_KEY', variable: 'SECRET_KEY'),
                                               string(credentialsId: 'EC2_USER', variable: 'EC2_USER'),
                                               string(credentialsId: 'EC2_IPv4_DNS_PRODUCTION', variable: 'EC2_IPv4_DNS_PRODUCTION')]){
-                                 sh '''
+                                /* sh '''
                                       ssh -tt -o "StrictHostKeyChecking=no" -i $PEM_KEY $EC2_USER@$EC2_IPv4_DNS << EOF
                                       git clone -b development https://github.com/jake4327/Practical_Project.git
                                       cd Practical_Project
                                       export MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} TEST_DATABASE_URI=${TEST_DATABASE_URI} SECRET_KEY=${SECRET_KEY} DATABASE_URI=${DATABASE_URI}
                                       sudo -E MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} DATABASE_URI=${DATABASE_URI} SECRET_KEY=${SECRET_KEY} docker-compose up -d
                                       EOF
-                                 '''
+                                 '''*/
+                                 echo hello
                              }
                 }
          }
-*/
+
       }
 }
