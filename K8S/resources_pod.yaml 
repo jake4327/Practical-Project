@@ -17,6 +17,7 @@ spec:
           cpu: "500m"
       ports:
         - containerPort: 80
+
     - name: frontend
       image: jstoneqa/sfia-2-jenkins_frontend
       resources:
@@ -28,6 +29,7 @@ spec:
          cpu: "500m"
       ports:
        - containerPort: 5000
+
     - name: backend
       image: jstoneqa/sfia-2-jenkins_backend
       resources:
@@ -39,6 +41,12 @@ spec:
           cpu: "500m"
       ports:
         - containerPort: 5001
+      env:
+        - name: DATABASE_URI
+          value: mysql+pymysql://root:password@database:3306/users
+        - name: TEST_DATABASE_URI
+          value: mysql+pymysql://root:password@database:3306/testdb
+
     - name: database
       image: jstoneqa/sfia-2-jenkins_database
       resources:
@@ -50,3 +58,8 @@ spec:
           cpu: "500m"
       ports:
         - containerPort: 3306
+      env:
+        - name: DATABASE_URI
+          value: mysql+pymysql://root:password@database:3306/users
+        - name: MYSQL_ROOT_PASSWORD
+          value: password

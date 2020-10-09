@@ -52,7 +52,8 @@ pipeline{
             stage('Run simple pod'){
                         steps{
                             sh '''
-                                kubectl create -f deploy_kubernetes.yaml
+                                cd ~/Practical_Project/K8S
+                                kubectl create -f web_service.yaml
                                 kubectl get pods
                                 kubectl describe pod | more
                              '''
