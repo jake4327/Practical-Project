@@ -24,15 +24,26 @@ This project requires the deployment of an app using technologies of the web ser
 
 ### Amazon Web Services (AWS)
 
+AWS will be used to put the project into production.
+Terrform will be used to create the resources for deployment.
+
 #### EC2 instances
-##### Sercurity groups
-##### Load balancer
+
+There will be two EC2 instances. The first one will be the Jenkins server and the second will be the pytest VM.
 
 #### VCP 
+
 ##### Route tables
-##### NACL
-##### NAT Gateway 
+
+The route table will have port 22 open so that the machines can be accessed through SSH.
+The route table will allow access on port 80 so that HTTP requests can be handeled by NGINX.
+
 ##### Subnets
+
+There are two subnets that will contain the RDS and the EC2 instances.
+The EC2 instance will need to be in the same subnet as the RDS so the instances can communicate.
+The best case scenario would be for the RDS to be in a private subnet and the EC2 being in a public 
+subnet. This would make the database more sercure as it can't be accessed directly from the internet.
 
 ## Testing
  
@@ -40,91 +51,87 @@ This project requires the deployment of an app using technologies of the web ser
 
 ### RDS
 
-### MySQL 
+There will be two RDS databases being used. The RDS should be in a private subnet.
+The RDS will be 
  
 ### Sercurity
 
+The enviroment variables within the application are kept sercure in a number of different ways. 
+
 ## Planning
 
-### Docker Compose 
+### Docker and Docker-Compose 
 
-![](pictures/docker-compose.jpg)
+There are three parts to docker that need to be disscussed.
 
-The appraoch to writing the docker compose file is the write out the single line commands 
-that need executing in the application and once the commands are scrutinized and accepted 
-compose the docker-compose.yaml file.
+1. Image creation
 
->docker-compose command
+Using dockerfiles to create envionments for the containers to run on.
+There are 4 images created in the application: frontend, backend, database and nginx.
 
->docker-compose command
+The images have there own role to play with in the application, the frontend allows the 
+the users to access the html page and then send a request to the backend. The backend directs
+the HTTP request from the front end and retrieves the data back from the database.
+The database makes the application stateful my holding the data between sessions 
+and makes it avaliable for retrival. Finally, NGINX acts as a reverse proxy to increase sercurity 
+by making the application appear as if it is under the same IP address so potential malious users 
+would only have one IP address to communicate with, not 3. NGINX also acts as a load balancer.
 
->docker-compose command
+2. Running containers
 
->docker-compose command
+Once the images have been built they will be run in seperate enviroments on the same machine.
+So that the containers can pass data between them, they are placed on the same network this allows 
+GET requests to be made from the frontend container to the backend. 
 
->docker-compose command
+3. Pushing images to Dockerhub 
 
->yaml
-
->yaml 
-
->yaml
-
->yaml
-
->yaml
+Images are pushed to docker hub so that when the application is ran in production K8S can access the
+images and run them. 
 
 ### Jenkins
 
-![](pictures/jenkins.jpg)
+#### Pipeline
+1. Update the jenkins machine
 
-Jenkins will use a pipeline to execute and run the containers from the commandline.
-The same format will be followed, the commands will be written and then analysed, after 
-a Jenkins build will be initiated.
+> sudo apt update
 
->command
+2. Connect to pytest server
 
->command
+> ssh PEM_KEY USER@DNS_OF_EC2 
+ 
+3. Run the pytest on test server
 
->command 
+> pytest cov 
+ 
+4. save pytest to test server
 
->Jenkins build
+> TEST_RESULTS.txt
 
-### Dockerfiles
+5. Downlaod kubctl on webserver
 
-![](pictures/docker.png)
+> curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+> chmod +x ./kubectl
+> sudo mv ./kubectl /usr/local/bin/kubectl
+> kubectl version --client
 
-Dockerfiles are the files that will tell the container how to run, by building the base image and 
-running commands in the terminal, yet again the docker commands will be impliement check for sincerity
-and turned into a Dockerfile
+6. Create a service for pods to run on 
 
-> docker pull python
+#### Webhook
 
-> docker pull jenkins
-
-> docker pull mysql
-
-> docker run -d -p 80:8080 python
-
-> docker run -d -p 5000:5000 jenkins 
-
-> docker run -d -p 3306:3306 mysql
-
-> docker exce PYTHON_IMAGE __init__.py
-
-> Dockerfile
+A webhook was added to the jenkins server. This allows for things to be pushed to the Repository on Github and
+then the Jenkins Server will re-run the Jenkins pipeline so that changes that are pushed to the repository will 
+be reflected on the test server and the production enviroment. 
 
 ### Ansible
 
-![](pictures/ansible_1.jpeg)
+#### Setting up Jenkins Server 
 
->
+1. installs Jenkins with a srcipt 
 
->
+#### Setting up the Test Virtual Machine
 
->
-
->
+1. Installs Docker with a script 
+2. Installs Docker-Compose with a script
 
 ## Risk Assessment
 
