@@ -49,13 +49,16 @@ pipeline{
                              '''
                         }
             }
-            stage(''){
+            stage('Run simple pod'){
                         steps{
                             sh '''
-
+                                kubectl create -f deploy_kubernetes.yaml
+                                kubectl get pods
+                                kubectl describe pod | more
                              '''
                         }
             }
+            stage('Run deploy_kubernetes')
 
 
      }
