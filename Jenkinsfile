@@ -32,7 +32,7 @@ pipeline{
                                       echo "hello world"
                                       EOF
                          '''
-                     }
+                             }
                             */
                             sh 'echo "skipping steps"'
                  }
@@ -46,7 +46,7 @@ pipeline{
                              '''
                         }
             }
-        }
+
 
      }
 }
