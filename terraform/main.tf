@@ -7,6 +7,11 @@ resource "aws-instance" "jenkins"{
   instance_type = var.type
 }
 
+resource "aws-instance" "pytest"{
+  ami = var.ami
+  instance_type = var.type
+}
+
 resource "aws_db_instance" "production_db" {
 
  allocated_storage = 20
@@ -20,7 +25,6 @@ resource "aws_db_instance" "production_db" {
  skip_final_snapshot  = true
 }
 
-
 resource "aws_db_instance" "test" { 
 
  allocated_storage = 20
@@ -33,4 +37,3 @@ resource "aws_db_instance" "test" {
  password          = "password"
  skip_final_snapshot  = true 
 }
-
