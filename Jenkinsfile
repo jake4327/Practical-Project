@@ -9,8 +9,8 @@ pipeline{
            }
 
            stage('Run app on test server'){
-                 load "/home/jenkins/.envvars/env-vars.groovy"
                  steps{
+                        load "/home/jenkins/.envvars/env-vars.groovy"
                         withCredentials([file(credentialsId: 'PEM_KEY', variable: 'PEM_KEY')]){
                          sh '''
                                       ssh -tt -o "StrictHostKeyChecking=no" -i ${PEM_KEY} $EC2_USER@$EC2_IPv4_DNS_TEST << EOF
