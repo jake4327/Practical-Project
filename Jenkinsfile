@@ -9,15 +9,9 @@ pipeline{
            }
 
            stage('Run app on test server'){
+                 load "/home/jenkins/.envvars/env-vars.groovy"
                  steps{
-
-                     withCredentials([file(credentialsId: 'PEM_KEY', variable: 'PEM_KEY'),
-                                    string(credentialsId: 'DATABASE_URI', variable: 'DATABASE_URI'),
-                                    string(credentialsId: 'TEST_DATABASE_URI', variable: 'TEST_DATABASE_URI'),
-                                    string(credentialsId: 'MYSQL_ROOT_PASSWORD', variable: 'MYSQL_ROOT_PASSWORD'),
-                                    string(credentialsId: 'SECRET_KEY', variable: 'SECRET_KEY'),
-                                    string(credentialsId: 'EC2_USER', variable: 'EC2_USER'),
-                                    string(credentialsId: 'EC2_IPv4_DNS_TEST', variable: 'EC2_IPv4_DNS_TEST')]){
+                        withCredentials([file(credentialsId: 'PEM_KEY', variable: 'PEM_KEY')]){
                          sh '''
                                       ssh -tt -o "StrictHostKeyChecking=no" -i ${PEM_KEY} $EC2_USER@$EC2_IPv4_DNS_TEST << EOF
                                       export MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} DATABASE_URI=${DATABASE_URI} MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} SECRET_KEY=${SECRET_KEY} TEST_DATABASE_URI=mysql+pymysql://admin:password@database-1.cgmsgfpt9oix.us-west-2.rds.amazonaws.com:3306/testdb
@@ -32,8 +26,7 @@ pipeline{
 
                                       EOF
                          '''
-                             }
-
+                        }
                             sh 'echo "skipping steps"'
                  }
            }
