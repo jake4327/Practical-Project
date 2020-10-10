@@ -19,17 +19,17 @@ pipeline{
                                     string(credentialsId: 'EC2_USER', variable: 'EC2_USER'),
                                     string(credentialsId: 'EC2_IPv4_DNS_TEST', variable: 'EC2_IPv4_DNS_TEST')]){
                          sh '''
-                                      ssh -tt -o "StrictHostKeyChecking=no" -i ${PEM_KEY} ubuntu@ec2-54-187-39-38.us-west-2.compute.amazonaws.com << EOF
+                                      ssh -tt -o "StrictHostKeyChecking=no" -i ${PEM_KEY} $EC2_USER@$EC2_IPv4_DNS_TEST << EOF
                                       export MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} DATABASE_URI=${DATABASE_URI} MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} SECRET_KEY=${SECRET_KEY} TEST_DATABASE_URI=mysql+pymysql://admin:password@database-1.cgmsgfpt9oix.us-west-2.rds.amazonaws.com:3306/testdb
                                       git clone https://github.com/jake4327/Practical_Project.git
                                       cd Practical_Project
-                                      sudo -E TEST_DATABASE_URI=mysql+pymysql://admin:password@sfia-2-test-vm.cgmsgfpt9oix.us-west-2.rds.amazonaws.com:3306/testdb DATABASE_URI=${DATABASE_URI} MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} SECRET_KEY=${SECRET_KEY} docker-compose up -d
+                                      sudo -E TEST_DATABASE_URI=${TEST_DATABASE_URI} DATABASE_URI=${DATABASE_URI} MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} SECRET_KEY=${SECRET_KEY} docker-compose up -d
 
                                       touch TEST_RESULTS.txt
-                                      echo "hello-world" >> TEST_RESULTS.txt
+
                                       docker exec practical_project_backend_1 pytest --cov application > TEST_RESULTS.txt
                                       exit
-                                      echo "hello world"
+
                                       EOF
                          '''
                              }
@@ -52,7 +52,7 @@ pipeline{
             stage('Run simple pod'){
                         steps{
                             sh '''
-                                cd ~/Practical_Project/K8S
+                                cd Practical_Project/K8S
                                 kubectl create -f resources_pod.yaml
                                 kubectl get pods
                                 kubectl describe pod | more
