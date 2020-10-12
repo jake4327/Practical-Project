@@ -8,15 +8,15 @@ resource "aws_vpc" "main" {
 }
 
 resource "aws_instance" "pytest"{
-  ami = var.ami
-  instance_type = var.type
-  key_name = "amazon_project_work.pem"
+  ami = "ami-09a1e275e350acf38"
+  instance_type = "t2.micro"
+  key_name = "sfia2.pem"
 }
 
 resource "aws_instance" "jenkins_server"{
-  ami = var.ami
-  instance_type = var.type
-  key_name = "amazon_project_work.pem"
+  ami = "ami-09a1e275e350acf38"
+  instance_type = "t2.micro"
+  key_name = "sfia2.pem"
 }
 
 resource "aws_db_instance" "production_db" {
@@ -42,3 +42,4 @@ resource "aws_db_instance" "test" {
  password          = "test123"
  skip_final_snapshot  = true
 }
+
