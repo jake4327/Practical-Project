@@ -29,4 +29,11 @@ spec:
       - name: backend
         image: jstoneqa/sfia-2-jenkins_backend
         ports:
-                - containerPort: 5001
+          - containerPort: 5001
+        env:
+          - name: TEST_DATABASE_URI
+            value: "mysql+pymysql://admin:password@database-1.cgmsgfpt9oix.us-west-2.rds.amazonaws.com:3306/testdb"
+          - name: DATABASE_URI
+            value: "mysql+pymysql://admin:password@database-1.cgmsgfpt9oix.us-west-2.rds.amazonaws.com:3306/users"
+          - name: SECRET_KEY
+            value: "password"
