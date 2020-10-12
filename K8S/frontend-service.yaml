@@ -7,8 +7,9 @@ spec:
     app: frontend
   ports: 
   - protocol: TCP
-    port: 5000
-  type: ClusterIP
+    port: 80
+    targetPort: 5000
+  type: LoadBalancer
 ---
 apiVersion: apps/v1
 kind: Deployment
