@@ -1,6 +1,6 @@
 variable "ami" {
  description = "machine image"
- default     = "ami-07a29e5e945228fa1"
+ default     = "ami-09a1e275e350acf38"
 }
 
 variable "type" {

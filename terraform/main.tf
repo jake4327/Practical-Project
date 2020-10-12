@@ -10,11 +10,13 @@ resource "aws_vpc" "main" {
 resource "aws_instance" "pytest"{
   ami = var.ami
   instance_type = var.type
+  key_name = "amazon_project_work.pem"
 }
 
 resource "aws_instance" "jenkins_server"{
   ami = var.ami
   instance_type = var.type
+  key_name = "amazon_project_work.pem"
 }
 
 resource "aws_db_instance" "production_db" {
