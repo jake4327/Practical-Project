@@ -10,14 +10,8 @@ pipeline{
 
            stage('Run app on test server'){
                  steps{
-
-                     withCredentials([file(credentialsId: 'PEM_KEY', variable: 'PEM_KEY'),
-                                    string(credentialsId: 'DATABASE_URI', variable: 'DATABASE_URI'),
-                                    string(credentialsId: 'TEST_DATABASE_URI', variable: 'TEST_DATABASE_URI'),
-                                    string(credentialsId: 'MYSQL_ROOT_PASSWORD', variable: 'MYSQL_ROOT_PASSWORD'),
-                                    string(credentialsId: 'SECRET_KEY', variable: 'SECRET_KEY'),
-                                    string(credentialsId: 'EC2_USER', variable: 'EC2_USER'),
-                                    string(credentialsId: 'EC2_IPv4_DNS_TEST', variable: 'EC2_IPv4_DNS_TEST')]){
+                        load "/home/jenkins/.envvars/env-vars.groovy"
+                        withCredentials([file(credentialsId: 'PEM_KEY', variable: 'PEM_KEY')]){
                          sh '''
                                       ssh -tt -o "StrictHostKeyChecking=no" -i ${PEM_KEY} $EC2_USER@$EC2_IPv4_DNS_TEST << EOF
                                       export MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} DATABASE_URI=${DATABASE_URI} MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} SECRET_KEY=${SECRET_KEY} TEST_DATABASE_URI=mysql+pymysql://admin:password@database-1.cgmsgfpt9oix.us-west-2.rds.amazonaws.com:3306/testdb
@@ -32,14 +26,13 @@ pipeline{
 
                                       EOF
                          '''
-                             }
-
+                        }
                             sh 'echo "skipping steps"'
                  }
            }
 
 
-            stage('Intstall K8S'){
+         /*    stage('Intstall K8S'){
                         steps{
                             sh '''
                                curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
@@ -48,14 +41,16 @@ pipeline{
                                kubectl version --client
                              '''
                         }
-            }
+            } */
             stage('Run simple pod'){
                         steps{
+                            //git clone SFIA2_REPO
                             sh '''
-                                cd Practical_Project/K8S
-                                kubectl create -f resources_pod.yaml
-                                kubectl get pods
-                                kubectl describe pod | more
+                                ssh ubuntu@
+                                kubectl create -f Practical_Project/K8S/
+
+
+
                              '''
                         }
             }
