@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: true
+  tasks:
+#    - name: install jenkins 
+#      script: install_jenkins.sh
+    - name: install docker-compose
+      script: install_docker_compose.sh
+#    - name: install docker
+#      script: install_docker.sh
+   
+
+
+
