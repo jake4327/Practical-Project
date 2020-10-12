@@ -61,7 +61,7 @@ pipeline{
                      '''
                 }
             }
-            */
+            
             stage('Run simple pod'){
                         steps{
                             load "/home/jenkins/.envvars/env-vars.groovy"
@@ -76,6 +76,7 @@ pipeline{
                              '''
                         }
             }
+            */
 
      }
 }
