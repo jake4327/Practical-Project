@@ -32,7 +32,7 @@ pipeline{
            }
 
 
-            stage('Intstall K8S'){
+         /*    stage('Intstall K8S'){
                         steps{
                             sh '''
                                curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
@@ -41,14 +41,16 @@ pipeline{
                                kubectl version --client
                              '''
                         }
-            }
+            } */
             stage('Run simple pod'){
                         steps{
+                            //git clone SFIA2_REPO
                             sh '''
-                                cd Practical_Project/K8S
-                                kubectl create -f resources_pod.yaml
-                                kubectl get pods
-                                kubectl describe pod | more
+                                ssh ubuntu@
+                                kubectl create -f Practical_Project/K8S/
+
+
+
                              '''
                         }
             }
