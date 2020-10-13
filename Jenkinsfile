@@ -13,15 +13,13 @@ pipeline{
                         load "/home/jenkins/.envvars/env-vars.groovy"
                         withCredentials([file(credentialsId: 'PEM_KEY', variable: 'PEM_KEY')]){
                          sh '''
-                                      ssh -tt -o "StrictHostKeyChecking=no" -i $PEM_KEY $EC2_USER@$EC2_IPv4_DNS_TEST << EOF
-                                      export MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD DATABASE_URI=$DATABASE_URI
-                                      export SECRET_KEY=$SECRET_KEY TEST_DATABASE_URI=$TEST_DATABASE_URI
-                                      cd Practical_Project
-                                      echo $DATA_BASE_URI
-                                      sudo -E TEST_DATABASE_URI=$TEST_DATABASE_URI DATABASE_URI=$DATABASE_URI MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD SECRET_KEY=$SECRET_KEY docker-compose up -d
-                                      docker exec practical_project_backend_1 pytest --cov application > TEST_RESULTS_BACKEND.txt
-                                       
-                                      >> EOF
+                         ssh -tt -o "StrictHostKeyChecking=no" -i $PEM_KEY $EC2_USER@$EC2_IPv4_DNS_TEST << EOF
+                         export MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD 
+                         export DATABASE_URI=$DATABASE_URI
+                         export SECRET_KEY=$SECRET_KEY
+                         export TEST_DATABASE_URI=$TEST_DATABASE_URI
+                         cd Practical_Project             
+                         EOF
                          '''
                         }
                  }
