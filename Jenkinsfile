@@ -21,6 +21,7 @@ pipeline{
                               touch TEST_RESULTS.txt
                               docker exec practical_project_backend_1 pytest --cov application > TEST_RESULTS_BACKEND_1.txt
                               docker exec practical_project_backend_1 pytest --cov application > TEST_RESULTS_FRONTEND_1.txt
+                              echo $DATABASE_URI
                               cat TEST_RESULTS_BACKEND.txt
                               cat TEST_RESULTS_FRONTEND_1.txt
                               exit
