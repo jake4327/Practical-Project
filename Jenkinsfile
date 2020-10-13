@@ -19,7 +19,7 @@ pipeline{
                          export SECRET_KEY=$SECRET_KEY
                          export TEST_DATABASE_URI=$TEST_DATABASE_URI
                          cd Practical_Project             
-                         EOF
+                         >> EOF
                          '''
                         }
                  }
