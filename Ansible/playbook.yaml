@@ -1,14 +1,21 @@
 ---
-- hosts: all
+- hosts: jenkins_master
   become: true
   tasks:
-#    - name: install jenkins 
-#      script: install_jenkins.sh
+    - name: install jenkins
+      script: install_jenkins.sh
+    - name: install kops
+      script: install_kops.sh
+    - name: install kubectl
+      script: install_kubectl.sh
+- hosts: test
+  become: true
+  tasks:
     - name: install docker-compose
       script: install_docker_compose.sh
-#    - name: install docker
-#      script: install_docker.sh
-   
+    - name: install docker
+      script: install_docker.sh
+
 
 
 

@@ -32,8 +32,8 @@ spec:
           - containerPort: 5001
         env:
           - name: TEST_DATABASE_URI
-            value: "mysql+pymysql://admin:password@sfiia-2-k8s-rds.c4ytirzx9dif.us-east-2.rds.amazonaws.com:3306/testdb"
+            value: $TEST_DATABASE_URI
           - name: DATABASE_URI
-            value: "mysql+pymysql://admin:password@sfiia-2-k8s-rds.c4ytirzx9dif.us-east-2.rds.amazonaws.com:3306/users"
+            value: $DATABASE_URI
           - name: SECRET_KEY
-            value: "password"
+            value: $SECRET_KEY
