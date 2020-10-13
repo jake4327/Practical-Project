@@ -92,14 +92,15 @@ be reflected on the test server and the production environment.
 1. Installs Docker with a script 
 2. Installs Docker-Compose with a script
 
-## Infrastructure
-
 ### Continuous Integration pipeline
 
 The technologies described above are used to make the process automated. The picture below shows how
-the technologies are working together to automate the process.
+the technologies are working together to automate the process. The red arrow shows the process that is 
+still done manually.
 
+![](pictures/CI_pipeline.png)
 
+## Infrastructure
 
 ### Amazon Web Services (AWS)
 
