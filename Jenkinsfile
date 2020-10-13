@@ -23,6 +23,7 @@ pipeline{
                               docker exec practical_project_backend_1 pytest --cov application > TEST_RESULTS_FRONTEND_1.txt 
                               cat TEST_RESULTS_BACKEND.txt
                               cat TEST_RESULTS_FRONTEND_1.txt
+                              echo $DATABASE_URI
                               exit
                               EOF
                          '''
